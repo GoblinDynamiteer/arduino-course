@@ -2,6 +2,8 @@
 
 const byte motorForward = 3;
 const byte motorReverse = 5;
+const byte motor2Forward = 11;
+const byte motor2Reverse = 10;
 const byte enablePin = 9;
 const byte buttonPin = 13;
 const byte potPin = A0;
@@ -32,10 +34,14 @@ void loop(){
 	if(direction){
 		digitalWrite(motorForward, 0);
 		analogWrite(motorReverse, speed);
+		analogWrite(motor2Forward, speed);
+		digitalWrite(motor2Reverse, 0);
 		}
 	else{
 		analogWrite(motorForward, speed);
 		digitalWrite(motorReverse, 0);
+		digitalWrite(motor2Forward, 0);
+		analogWrite(motor2Reverse, speed);
 		}
 	delay(20);
 }
