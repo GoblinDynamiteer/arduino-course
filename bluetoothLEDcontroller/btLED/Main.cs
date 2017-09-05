@@ -15,6 +15,11 @@ namespace btLED
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
 
+            if (!btSerialPort.IsOpen)
+            {
+                btSerialPort.Open();
+            }
+
             btSerialPort.Write("B120X");
         }
 
