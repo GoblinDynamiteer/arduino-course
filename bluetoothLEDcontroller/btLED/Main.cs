@@ -6,6 +6,8 @@ namespace btLED
 {
     public partial class frmMain : Form
     {
+        enum ledColor : int { Red, Blue, Green };
+
         public frmMain()
         {
             InitializeComponent();
@@ -20,7 +22,6 @@ namespace btLED
                 btSerialPort.Open();
             }
 
-            //btSerialPort.Write("B120X");
         }
 
         /* Update drop-down list with available COM-ports */
@@ -74,19 +75,47 @@ namespace btLED
         private void scrollPwmRed_Scroll(object sender, EventArgs e)
         {
             lblPwmRed.Text = scrollPwmRed.Value.ToString();
-            btSerialPort.Write("R" + scrollPwmRed.Value + "X");
+            setLedPWM(ledColor.Red, scrollPwmRed.Value);
         }
 
         private void scrollPwmGreen_Scroll(object sender, EventArgs e)
         {
             lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
-            btSerialPort.Write("G" + scrollPwmGreen.Value + "X");
+            setLedPWM(ledColor.Green, scrollPwmGreen.Value);
         }
 
         private void scrollPwmBlue_Scroll(object sender, EventArgs e)
         {
             lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
-            btSerialPort.Write("B" + scrollPwmBlue.Value + "X");
+            setLedPWM(ledColor.Blue, scrollPwmBlue.Value);
+        }
+
+        /* Set GRB LED PWM with Serial communication */
+        private void setLedPWM(ledColor color, int pwm)
+        {
+            string commandColor = "";
+
+            switch (color)
+            {
+                case ledColor.Red:
+                    commandColor = "R";
+                    break;
+
+                case ledColor.Blue:
+                    commandColor = "B";
+                    break;
+
+                case ledColor.Green:
+                    commandColor = "G";
+                    break;
+
+                default:
+                    break;
+            }
+
+            pwm = pwm > 255 ? 255 : pwm;
+
+            btSerialPort.Write(commandColor + pwm + "X");
         }
     }
 
