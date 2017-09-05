@@ -65,16 +65,19 @@ namespace btLED
         private void scrollPwmRed_Scroll(object sender, EventArgs e)
         {
             lblPwmRed.Text = scrollPwmRed.Value.ToString();
+            btSerialPort.Write("R" + scrollPwmRed.Value.ToString() + "X");
         }
 
         private void scrollPwmGreen_Scroll(object sender, EventArgs e)
         {
             lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
+            btSerialPort.Write("G" + scrollPwmRed.Value.ToString() + "X");
         }
 
         private void scrollPwmBlue_Scroll(object sender, EventArgs e)
         {
             lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
+            btSerialPort.Write("B" + scrollPwmRed.Value.ToString() + "X");
         }
     }
 
