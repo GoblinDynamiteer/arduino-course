@@ -16,9 +16,6 @@
 #define LED_PIN_BLUE 6
 #define LED_PIN_GREEN 5
 
-#define ON 1
-#define OFF 0
-
 /* Command buffer size / lenght */
 #define SERIAL_BUFFER_SIZE 6
 
@@ -27,8 +24,6 @@ const char COMMAND_END = 'X';
 const char COMMAND_LED_RED = 'R';
 const char COMMAND_LED_GREEN = 'G';
 const char COMMAND_LED_BLUE = 'B';
-const char COMMAND_LED_ON = '1';
-const char COMMAND_LED_OFF = '0';
 
 void setup()
 {
@@ -54,34 +49,24 @@ void loop()
         led_pin = data[0] == COMMAND_LED_BLUE   ? LED_PIN_BLUE  : led_pin;
         led_pin = data[0] == COMMAND_LED_GREEN  ? LED_PIN_GREEN : led_pin;
 
-        /* Turn LED Off */
-        if(data[1] == COMMAND_LED_OFF)
-        {
-            Serial.println("Setting " +  String(data[0]) + "-LED Off ");
-            ledOff(led_pin);
-        }
+        String pwm = ""; // For int conversion
 
-        else // Set PWM
+        for(int i = 1; i < data.length(); i++)
         {
-            String pwm = ""; // For int conversion
-
-            for(int i = 1; i < data.length(); i++)
+            /* Break when char is non-digit */
+            if(!isDigit(data[i]))
             {
-                /* Break when char is non-digit */
-                if(!isDigit(data[i]))
-                {
-                    break;
-                }
-
-                pwm += data[i]; // Concatenate numbers to string
+                break;
             }
 
-            Serial.println(
-                "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
-
-            /* Use toInt to convert to int, cast as byte */
-            ledPWM(led_pin, (byte)pwm.toInt());
+            pwm += data[i]; // Concatenate numbers to string
         }
+
+        Serial.println(
+            "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
+
+        /* Use toInt to convert to int, cast as byte */
+        ledPWM(led_pin, (byte)pwm.toInt());
     }
 
     delay(100);
@@ -94,12 +79,6 @@ void ledPWM(int pin, byte pwm_value)
     pwm_value = pwm_value > 255 ? 255 : pwm_value;
 
     analogWrite(pin, pwm_value);
-}
-
-/* Set LED off */
-void ledOff(int pin)
-{
-    analogWrite(pin, OFF);
 }
 
 /* Read serial command (from bluetooth) */
