@@ -1,21 +1,29 @@
 /* COMMANDS
+    RGB PWM
+    R###X
+    G###X
+    B###X
 
-    R1X -- LED ON
-    R0X -- LED OFF
+    RGB OFF
+    R0X
+    G0X
+    B0X
  */
 
 
+/* PWM ports for RGB-LED */
 #define LED_PIN_RED 3
-#define LED_PIN_BLUE 3
-#define LED_PIN_GREEN 4
+#define LED_PIN_BLUE 6
+#define LED_PIN_GREEN 5
 
 #define ON 1
 #define OFF 0
 
+/* Command buffer size / lenght */
 #define SERIAL_BUFFER_SIZE 6
 
+/* Commands */
 const char COMMAND_END = 'X';
-
 const char COMMAND_LED_RED = 'R';
 const char COMMAND_LED_GREEN = 'G';
 const char COMMAND_LED_BLUE = 'B';
@@ -26,6 +34,8 @@ void setup()
 {
     /* Set LED pins to output */
     pinMode(LED_PIN_RED, OUTPUT);
+    pinMode(LED_PIN_GREEN, OUTPUT);
+    pinMode(LED_PIN_BLUE, OUTPUT);
 
     Serial.begin(9600);
     Serial.setTimeout(1000);
@@ -40,11 +50,9 @@ void loop()
     if(data.length() > 0)
     {
         int led_pin = 0;
-        led_pin = data[0] == COMMAND_LED_RED ? LED_PIN_RED : led_pin;
-        led_pin = data[0] == COMMAND_LED_BLUE ? LED_PIN_BLUE : led_pin;
-        led_pin = data[0] == COMMAND_LED_GREEN ? LED_PIN_GREEN : led_pin;
-
-        Serial.println(data);
+        led_pin = data[0] == COMMAND_LED_RED    ? LED_PIN_RED   : led_pin;
+        led_pin = data[0] == COMMAND_LED_BLUE   ? LED_PIN_BLUE  : led_pin;
+        led_pin = data[0] == COMMAND_LED_GREEN  ? LED_PIN_GREEN : led_pin;
 
         if(data[1] == COMMAND_LED_OFF)
         {
@@ -53,7 +61,20 @@ void loop()
 
         else
         {
-            
+            String pwm = "";
+
+            for(int i = 1; i < data.length(); i++)
+            {
+                if(!isDigit(data[i]))
+                {
+                    break;
+                }
+
+                pwm += data[i];
+            }
+
+            Serial.println("Setting " +  String(data[0]) + "LED to PWM: " + pwm);
+            ledOn(led_pin, (byte)pwm.toInt());
         }
     }
 
@@ -63,6 +84,7 @@ void loop()
 /* Set LED on */
 void ledOn(int pin, byte pwm_value)
 {
+    pwm_value = pwm_value > 255 ? 255 : pwm_value;
     analogWrite(pin, pwm_value);
 }
 
