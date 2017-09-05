@@ -72,6 +72,11 @@ void loop()
             ledPWM(led_pin, (byte)pwm.toInt());
         }
 
+        else // led_pin not set by command
+        {
+            Serial.println("Invalid command!");
+        }
+
     }
 
     delay(50);
