@@ -12,8 +12,13 @@ namespace btLED
             UpdateCOMportList();
 
             btSerialPort.Open();
+
+            lblPwmBlue.Text = "0";
+            lblPwmRed.Text = "0";
+            lblPwmGreen.Text = "0";
         }
 
+        /* Update drop-down list with available COM-ports */
         void UpdateCOMportList()
         {
             string[] ports = SerialPort.GetPortNames();
@@ -37,6 +42,7 @@ namespace btLED
             textBoxSerialData.AppendText(data);
         }
 
+        /* Event for port select in drop-down */
         private void comboBoxPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
             string port = comboBoxPortList.SelectedText;
@@ -48,12 +54,27 @@ namespace btLED
                 btSerialPort.Open();
             }
             
-            
         }
 
+        /* Event for refrsh-button */
         private void btnRefreshPortList_Click(object sender, EventArgs e)
         {
             UpdateCOMportList();
+        }
+
+        private void scrollPwmRed_Scroll(object sender, EventArgs e)
+        {
+            lblPwmRed.Text = scrollPwmRed.Value.ToString();
+        }
+
+        private void scrollPwmGreen_Scroll(object sender, EventArgs e)
+        {
+            lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
+        }
+
+        private void scrollPwmBlue_Scroll(object sender, EventArgs e)
+        {
+            lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
         }
     }
 
