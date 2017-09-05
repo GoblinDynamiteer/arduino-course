@@ -13,6 +13,7 @@ namespace btLED
             InitializeComponent();
             UpdateCOMportList();
 
+            /* Set labels to zero */
             lblPwmBlue.Text = "0";
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
@@ -42,6 +43,7 @@ namespace btLED
             this.Invoke(new EventHandler(DisplayText));
         }
 
+        /* Display serial data and misc */
         private void DisplayText(object o, EventArgs e)
         {
             /* Display data in textbox */
@@ -113,6 +115,7 @@ namespace btLED
                     break;
             }
 
+            /* Limit PWM to 255 */
             pwm = pwm > 255 ? 255 : pwm;
 
             btSerialPort.Write(commandColor + pwm + "X");
