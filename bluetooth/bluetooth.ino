@@ -54,37 +54,45 @@ void loop()
         led_pin = data[0] == COMMAND_LED_BLUE   ? LED_PIN_BLUE  : led_pin;
         led_pin = data[0] == COMMAND_LED_GREEN  ? LED_PIN_GREEN : led_pin;
 
+        /* Turn LED Off */
         if(data[1] == COMMAND_LED_OFF)
         {
+            Serial.println("Setting " +  String(data[0]) + "-LED Off ");
             ledOff(led_pin);
         }
 
-        else
+        else // Set PWM
         {
-            String pwm = "";
+            String pwm = ""; // For int conversion
 
             for(int i = 1; i < data.length(); i++)
             {
+                /* Break when char is non-digit */
                 if(!isDigit(data[i]))
                 {
                     break;
                 }
 
-                pwm += data[i];
+                pwm += data[i]; // Concatenate numbers to string
             }
 
-            Serial.println("Setting " +  String(data[0]) + "LED to PWM: " + pwm);
-            ledOn(led_pin, (byte)pwm.toInt());
+            Serial.println(
+                "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
+
+            /* Use toInt to convert to int, cast as byte */
+            ledPWM(led_pin, (byte)pwm.toInt());
         }
     }
 
     delay(100);
 }
 
-/* Set LED on */
-void ledOn(int pin, byte pwm_value)
+/* Set LED PWM value */
+void ledPWM(int pin, byte pwm_value)
 {
+    /* Limit PWM value (not needed as byte is max 255?) */
     pwm_value = pwm_value > 255 ? 255 : pwm_value;
+
     analogWrite(pin, pwm_value);
 }
 
