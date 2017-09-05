@@ -18,10 +18,24 @@ namespace btLED
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
 
+
             if (!btSerialPort.IsOpen)
             {
-                btSerialPort.Open();
+                try
+                {
+                    btSerialPort.Open();
+                    textBoxSerialData.AppendText(
+                        "COM-port öppnad!\r\n");
+                }
+
+                catch (Exception)
+                {
+                    textBoxSerialData.AppendText(
+                        "Kan inte öppna COM-port!\r\n");
+                }
+                
             }
+
 
         }
 
