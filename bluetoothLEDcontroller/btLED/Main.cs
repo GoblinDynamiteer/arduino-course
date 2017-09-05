@@ -14,6 +14,8 @@ namespace btLED
             lblPwmBlue.Text = "0";
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
+
+            btSerialPort.Write("B120X");
         }
 
         /* Update drop-down list with available COM-ports */
@@ -63,19 +65,19 @@ namespace btLED
         private void scrollPwmRed_Scroll(object sender, EventArgs e)
         {
             lblPwmRed.Text = scrollPwmRed.Value.ToString();
-            btSerialPort.Write("R" + scrollPwmRed.Value.ToString() + "X");
+            btSerialPort.Write("R" + scrollPwmRed.Value + "X");
         }
 
         private void scrollPwmGreen_Scroll(object sender, EventArgs e)
         {
             lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
-            btSerialPort.Write("G" + scrollPwmRed.Value.ToString() + "X");
+            btSerialPort.Write("G" + scrollPwmRed.Value + "X");
         }
 
         private void scrollPwmBlue_Scroll(object sender, EventArgs e)
         {
             lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
-            btSerialPort.Write("B" + scrollPwmRed.Value.ToString() + "X");
+            btSerialPort.Write("B" + scrollPwmRed.Value + "X");
         }
     }
 
