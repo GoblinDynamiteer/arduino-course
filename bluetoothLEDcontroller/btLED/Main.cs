@@ -11,8 +11,6 @@ namespace btLED
             InitializeComponent();
             UpdateCOMportList();
 
-            btSerialPort.Open();
-
             lblPwmBlue.Text = "0";
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
@@ -47,10 +45,10 @@ namespace btLED
         {
             string port = comboBoxPortList.SelectedText;
 
-            if (btSerialPort.PortName != port && port != "")
+            btSerialPort.PortName = port;
+
+            if (!btSerialPort.IsOpen)
             {
-                btSerialPort.Close();
-                btSerialPort.PortName = port;
                 btSerialPort.Open();
             }
             
