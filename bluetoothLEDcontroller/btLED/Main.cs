@@ -20,7 +20,7 @@ namespace btLED
                 btSerialPort.Open();
             }
 
-            btSerialPort.Write("B120X");
+            //btSerialPort.Write("B120X");
         }
 
         /* Update drop-down list with available COM-ports */
@@ -50,7 +50,9 @@ namespace btLED
         /* Event for port select in drop-down */
         private void comboBoxPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string port = comboBoxPortList.SelectedText;
+            string port = comboBoxPortList.Text;
+
+            btSerialPort.Close();
 
             btSerialPort.PortName = port == "" ? btSerialPort.PortName : port;
 
@@ -58,6 +60,8 @@ namespace btLED
             {
                 btSerialPort.Open();
             }
+
+            textBoxSerialData.AppendText("Port set to " + port);
             
         }
 
@@ -76,13 +80,13 @@ namespace btLED
         private void scrollPwmGreen_Scroll(object sender, EventArgs e)
         {
             lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
-            btSerialPort.Write("G" + scrollPwmRed.Value + "X");
+            btSerialPort.Write("G" + scrollPwmGreen.Value + "X");
         }
 
         private void scrollPwmBlue_Scroll(object sender, EventArgs e)
         {
             lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
-            btSerialPort.Write("B" + scrollPwmRed.Value + "X");
+            btSerialPort.Write("B" + scrollPwmBlue.Value + "X");
         }
     }
 
