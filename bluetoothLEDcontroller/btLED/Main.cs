@@ -45,7 +45,7 @@ namespace btLED
         {
             string port = comboBoxPortList.SelectedText;
 
-            btSerialPort.PortName = port;
+            btSerialPort.PortName = port == "" ? btSerialPort.PortName : port;
 
             if (!btSerialPort.IsOpen)
             {
