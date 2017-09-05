@@ -45,31 +45,36 @@ void loop()
     if(data.length() > 0)
     {
         int led_pin = 0;
+
         led_pin = data[0] == COMMAND_LED_RED    ? LED_PIN_RED   : led_pin;
         led_pin = data[0] == COMMAND_LED_BLUE   ? LED_PIN_BLUE  : led_pin;
         led_pin = data[0] == COMMAND_LED_GREEN  ? LED_PIN_GREEN : led_pin;
 
-        String pwm = ""; // For int conversion
-
-        for(int i = 1; i < data.length(); i++)
+        if(led_pin)
         {
-            /* Break when char is non-digit */
-            if(!isDigit(data[i]))
+            String pwm = ""; // For int conversion
+
+            for(int i = 1; i < data.length(); i++)
             {
-                break;
+                /* Break when char is non-digit */
+                if(!isDigit(data[i]))
+                {
+                    break;
+                }
+
+                pwm += data[i]; // Concatenate numbers to string
             }
 
-            pwm += data[i]; // Concatenate numbers to string
+            Serial.println(
+                "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
+
+            /* Use toInt to convert to int, cast as byte */
+            ledPWM(led_pin, (byte)pwm.toInt());
         }
 
-        Serial.println(
-            "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
-
-        /* Use toInt to convert to int, cast as byte */
-        ledPWM(led_pin, (byte)pwm.toInt());
     }
 
-    delay(100);
+    delay(50);
 }
 
 /* Set LED PWM value */
