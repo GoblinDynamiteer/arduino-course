@@ -90,19 +90,19 @@ namespace btLED
             UpdateCOMportList();
         }
 
-        private void scrollPwmRed_Scroll(object sender, EventArgs e)
+        private void scrollPwmRed_Scroll(object sender, ScrollEventArgs e)
         {
             lblPwmRed.Text = scrollPwmRed.Value.ToString();
             setLedPWM(ledColor.Red, scrollPwmRed.Value);
         }
 
-        private void scrollPwmGreen_Scroll(object sender, EventArgs e)
+        private void scrollPwmGreen_Scroll(object sender, ScrollEventArgs e)
         {
             lblPwmGreen.Text = scrollPwmGreen.Value.ToString();
             setLedPWM(ledColor.Green, scrollPwmGreen.Value);
         }
 
-        private void scrollPwmBlue_Scroll(object sender, EventArgs e)
+        private void scrollPwmBlue_Scroll(object sender, ScrollEventArgs e)
         {
             lblPwmBlue.Text = scrollPwmBlue.Value.ToString();
             setLedPWM(ledColor.Blue, scrollPwmBlue.Value);
@@ -146,12 +146,22 @@ namespace btLED
         {
             btSerialPort.Write("NX");
 
+            /* Set scroll sliders to zero */
+            scrollPwmBlue.Value = 0;
+            scrollPwmRed.Value = 0;
+            scrollPwmGreen.Value = 0;
+
+            /* Set labels to zero */
+            lblPwmBlue.Text = "0";
+            lblPwmRed.Text = "0";
+            lblPwmGreen.Text = "0";
         }
 
         private void btnStatus_Click(object sender, EventArgs e)
         {
             btSerialPort.Write("SX");
         }
+
     }
 
 }

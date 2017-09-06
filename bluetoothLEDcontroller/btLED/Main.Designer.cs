@@ -38,6 +38,7 @@
             this.scrollPwmRed = new System.Windows.Forms.HScrollBar();
             this.lblRed = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.lblPwmBlue = new System.Windows.Forms.Label();
             this.lblPwmGreen = new System.Windows.Forms.Label();
             this.lblPwmRed = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.scrollPwmBlue = new System.Windows.Forms.HScrollBar();
             this.scrollPwmGreen = new System.Windows.Forms.HScrollBar();
             this.btnStatus = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.comboBoxPortList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPortList.FormattingEnabled = true;
             this.comboBoxPortList.Location = new System.Drawing.Point(87, 19);
-            this.comboBoxPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxPortList.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxPortList.Name = "comboBoxPortList";
             this.comboBoxPortList.Size = new System.Drawing.Size(336, 33);
             this.comboBoxPortList.TabIndex = 0;
@@ -79,7 +79,7 @@
             // textBoxSerialData
             // 
             this.textBoxSerialData.Location = new System.Drawing.Point(30, 71);
-            this.textBoxSerialData.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxSerialData.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxSerialData.Multiline = true;
             this.textBoxSerialData.Name = "textBoxSerialData";
             this.textBoxSerialData.Size = new System.Drawing.Size(602, 304);
@@ -88,7 +88,7 @@
             // btnRefreshPortList
             // 
             this.btnRefreshPortList.Location = new System.Drawing.Point(482, 12);
-            this.btnRefreshPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnRefreshPortList.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefreshPortList.Name = "btnRefreshPortList";
             this.btnRefreshPortList.Size = new System.Drawing.Size(150, 44);
             this.btnRefreshPortList.TabIndex = 3;
@@ -104,7 +104,7 @@
             this.scrollPwmRed.Name = "scrollPwmRed";
             this.scrollPwmRed.Size = new System.Drawing.Size(362, 20);
             this.scrollPwmRed.TabIndex = 4;
-            this.scrollPwmRed.ValueChanged += new System.EventHandler(this.scrollPwmRed_Scroll);
+            this.scrollPwmRed.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollPwmRed_Scroll);
             // 
             // lblRed
             // 
@@ -129,13 +129,23 @@
             this.groupBox1.Controls.Add(this.scrollPwmRed);
             this.groupBox1.Controls.Add(this.lblRed);
             this.groupBox1.Location = new System.Drawing.Point(30, 415);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(602, 340);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RGB-Kontroll";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(19, 258);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(132, 51);
+            this.btnReset.TabIndex = 8;
+            this.btnReset.Text = "Återställ";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // lblPwmBlue
             // 
@@ -195,7 +205,7 @@
             this.scrollPwmBlue.Name = "scrollPwmBlue";
             this.scrollPwmBlue.Size = new System.Drawing.Size(362, 20);
             this.scrollPwmBlue.TabIndex = 7;
-            this.scrollPwmBlue.ValueChanged += new System.EventHandler(this.scrollPwmBlue_Scroll);
+            this.scrollPwmBlue.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollPwmBlue_Scroll);
             // 
             // scrollPwmGreen
             // 
@@ -205,7 +215,7 @@
             this.scrollPwmGreen.Name = "scrollPwmGreen";
             this.scrollPwmGreen.Size = new System.Drawing.Size(362, 20);
             this.scrollPwmGreen.TabIndex = 6;
-            this.scrollPwmGreen.ValueChanged += new System.EventHandler(this.scrollPwmGreen_Scroll);
+            this.scrollPwmGreen.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollPwmGreen_Scroll);
             // 
             // btnStatus
             // 
@@ -216,16 +226,6 @@
             this.btnStatus.Text = "Status";
             this.btnStatus.UseVisualStyleBackColor = true;
             this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(19, 258);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(132, 51);
-            this.btnReset.TabIndex = 8;
-            this.btnReset.Text = "Återställ";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmMain
             // 
@@ -240,7 +240,7 @@
             this.Controls.Add(this.comboBoxPortList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
