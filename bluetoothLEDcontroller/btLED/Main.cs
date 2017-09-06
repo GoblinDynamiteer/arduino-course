@@ -22,6 +22,13 @@ namespace btLED
             lastTick = Environment.TickCount;
 
 
+            OpenCOM();
+
+
+        }
+
+        void OpenCOM()
+        {
             if (!btSerialPort.IsOpen)
             {
                 try
@@ -36,10 +43,8 @@ namespace btLED
                     textBoxSerialData.AppendText(
                         "Kan inte öppna COM-port!\r\n");
                 }
-                
+
             }
-
-
         }
 
         /* Update drop-down list with available COM-ports */
@@ -76,12 +81,8 @@ namespace btLED
 
             btSerialPort.PortName = port == "" ? btSerialPort.PortName : port;
 
-            if (!btSerialPort.IsOpen)
-            {
-                btSerialPort.Open();
-            }
-
-            textBoxSerialData.AppendText("Port set to " + port);
+            textBoxSerialData.AppendText("Port satt till " + port + "\r\n");
+            OpenCOM();
             
         }
 
@@ -135,7 +136,6 @@ namespace btLED
             /* Limit PWM to 255 */
             pwm = pwm > 255 ? 255 : pwm;
 
-            /* BYGG DELAY?? */
             if (Environment.TickCount -lastTick > 30)
             {
                 btSerialPort.Write(commandColor + pwm + "X");
