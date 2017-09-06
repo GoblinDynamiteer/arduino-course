@@ -20,7 +20,7 @@
 #define LED_PIN_GREEN 5
 
 /* Command buffer size / lenght */
-#define SERIAL_BUFFER_SIZE 6
+#define SERIAL_BUFFER_SIZE 10
 
 /* Commands */
 const char COMMAND_END = 'X';
@@ -59,21 +59,21 @@ void loop()
                 pwm = GetPWMfromCommand(data);
                 led_red_pwm_last = pwm;
                 ledPWM(LED_PIN_RED, pwm);
-                Serial.println("Setting RED to: " + pwm);
+                Serial.println("Setting RED to: " + String(pwm));
                 break;
 
             case COMMAND_LED_BLUE:
                 pwm = GetPWMfromCommand(data);
                 led_blue_pwm_last = pwm;
                 ledPWM(LED_PIN_BLUE, pwm);
-                Serial.println("Setting BLUE to: " + pwm);
+                Serial.println("Setting BLUE to: " + String(pwm));
                 break;
 
             case COMMAND_LED_GREEN:
                 pwm = GetPWMfromCommand(data);
                 led_green_pwm_last = pwm;
                 ledPWM(LED_PIN_GREEN, pwm);
-                Serial.println("Setting GREEN to: " + pwm);
+                Serial.println("Setting GREEN to: " + String(pwm));
                 break;
 
             case COMMAND_LED_RESET:
@@ -84,9 +84,9 @@ void loop()
                 break;
 
             case COMMAND_STATUS:
-                Serial.println("RED:   " + led_red_pwm_last);
-                Serial.println("BLUE:  " + led_blue_pwm_last);
-                Serial.println("GREEN: " + led_green_pwm_last);
+                Serial.println("RED:   " + String(led_red_pwm_last));
+                Serial.println("BLUE:  " + String(led_blue_pwm_last));
+                Serial.println("GREEN: " + String(led_green_pwm_last));
                 break;
 
             default:
