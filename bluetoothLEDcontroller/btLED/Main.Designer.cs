@@ -37,53 +37,57 @@
             this.scrollPwmRed = new System.Windows.Forms.HScrollBar();
             this.lblRed = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.scrollPwmGreen = new System.Windows.Forms.HScrollBar();
-            this.scrollPwmBlue = new System.Windows.Forms.HScrollBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblPwmRed = new System.Windows.Forms.Label();
-            this.lblPwmGreen = new System.Windows.Forms.Label();
             this.lblPwmBlue = new System.Windows.Forms.Label();
+            this.lblPwmGreen = new System.Windows.Forms.Label();
+            this.lblPwmRed = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.scrollPwmBlue = new System.Windows.Forms.HScrollBar();
+            this.scrollPwmGreen = new System.Windows.Forms.HScrollBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btSerialPort
             // 
-            this.btSerialPort.PortName = "COM5";
+            this.btSerialPort.PortName = "COM6";
             this.btSerialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.btSerialPort_DataReceived);
             // 
             // comboBoxPortList
             // 
             this.comboBoxPortList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPortList.FormattingEnabled = true;
-            this.comboBoxPortList.Location = new System.Drawing.Point(44, 6);
+            this.comboBoxPortList.Location = new System.Drawing.Point(88, 12);
+            this.comboBoxPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxPortList.Name = "comboBoxPortList";
-            this.comboBoxPortList.Size = new System.Drawing.Size(110, 21);
+            this.comboBoxPortList.Size = new System.Drawing.Size(216, 33);
             this.comboBoxPortList.TabIndex = 0;
             this.comboBoxPortList.SelectedIndexChanged += new System.EventHandler(this.comboBoxPortList_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(24, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.Size = new System.Drawing.Size(51, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Port";
             // 
             // textBoxSerialData
             // 
-            this.textBoxSerialData.Location = new System.Drawing.Point(15, 37);
+            this.textBoxSerialData.Location = new System.Drawing.Point(30, 71);
+            this.textBoxSerialData.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBoxSerialData.Multiline = true;
             this.textBoxSerialData.Name = "textBoxSerialData";
-            this.textBoxSerialData.Size = new System.Drawing.Size(303, 160);
+            this.textBoxSerialData.Size = new System.Drawing.Size(602, 304);
             this.textBoxSerialData.TabIndex = 2;
             // 
             // btnRefreshPortList
             // 
-            this.btnRefreshPortList.Location = new System.Drawing.Point(160, 4);
+            this.btnRefreshPortList.Location = new System.Drawing.Point(320, 8);
+            this.btnRefreshPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnRefreshPortList.Name = "btnRefreshPortList";
-            this.btnRefreshPortList.Size = new System.Drawing.Size(75, 23);
+            this.btnRefreshPortList.Size = new System.Drawing.Size(150, 44);
             this.btnRefreshPortList.TabIndex = 3;
             this.btnRefreshPortList.Text = "Uppdatera";
             this.btnRefreshPortList.UseVisualStyleBackColor = true;
@@ -92,19 +96,20 @@
             // scrollPwmRed
             // 
             this.scrollPwmRed.LargeChange = 1;
-            this.scrollPwmRed.Location = new System.Drawing.Point(56, 42);
+            this.scrollPwmRed.Location = new System.Drawing.Point(112, 81);
             this.scrollPwmRed.Maximum = 255;
             this.scrollPwmRed.Name = "scrollPwmRed";
-            this.scrollPwmRed.Size = new System.Drawing.Size(181, 20);
+            this.scrollPwmRed.Size = new System.Drawing.Size(362, 20);
             this.scrollPwmRed.TabIndex = 4;
             this.scrollPwmRed.ValueChanged += new System.EventHandler(this.scrollPwmRed_Scroll);
             // 
             // lblRed
             // 
             this.lblRed.AutoSize = true;
-            this.lblRed.Location = new System.Drawing.Point(7, 47);
+            this.lblRed.Location = new System.Drawing.Point(14, 90);
+            this.lblRed.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRed.Name = "lblRed";
-            this.lblRed.Size = new System.Drawing.Size(30, 13);
+            this.lblRed.Size = new System.Drawing.Size(56, 25);
             this.lblRed.TabIndex = 5;
             this.lblRed.Text = "RED";
             // 
@@ -119,88 +124,96 @@
             this.groupBox1.Controls.Add(this.scrollPwmGreen);
             this.groupBox1.Controls.Add(this.scrollPwmRed);
             this.groupBox1.Controls.Add(this.lblRed);
-            this.groupBox1.Location = new System.Drawing.Point(15, 216);
+            this.groupBox1.Location = new System.Drawing.Point(30, 415);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 146);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Size = new System.Drawing.Size(606, 281);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RGB-Kontroll";
             // 
-            // scrollPwmGreen
+            // lblPwmBlue
             // 
-            this.scrollPwmGreen.LargeChange = 1;
-            this.scrollPwmGreen.Location = new System.Drawing.Point(56, 73);
-            this.scrollPwmGreen.Maximum = 255;
-            this.scrollPwmGreen.Name = "scrollPwmGreen";
-            this.scrollPwmGreen.Size = new System.Drawing.Size(181, 20);
-            this.scrollPwmGreen.TabIndex = 6;
-            this.scrollPwmGreen.ValueChanged += new System.EventHandler(this.scrollPwmGreen_Scroll);
-            // 
-            // scrollPwmBlue
-            // 
-            this.scrollPwmBlue.LargeChange = 1;
-            this.scrollPwmBlue.Location = new System.Drawing.Point(56, 104);
-            this.scrollPwmBlue.Maximum = 255;
-            this.scrollPwmBlue.Name = "scrollPwmBlue";
-            this.scrollPwmBlue.Size = new System.Drawing.Size(181, 20);
-            this.scrollPwmBlue.TabIndex = 7;
-            this.scrollPwmBlue.ValueChanged += new System.EventHandler(this.scrollPwmBlue_Scroll);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "GREEN";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "BLUE";
-            // 
-            // lblPwmRed
-            // 
-            this.lblPwmRed.AutoSize = true;
-            this.lblPwmRed.Location = new System.Drawing.Point(255, 47);
-            this.lblPwmRed.Name = "lblPwmRed";
-            this.lblPwmRed.Size = new System.Drawing.Size(34, 13);
-            this.lblPwmRed.TabIndex = 10;
-            this.lblPwmRed.Text = "PWM";
+            this.lblPwmBlue.AutoSize = true;
+            this.lblPwmBlue.Location = new System.Drawing.Point(510, 200);
+            this.lblPwmBlue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblPwmBlue.Name = "lblPwmBlue";
+            this.lblPwmBlue.Size = new System.Drawing.Size(64, 25);
+            this.lblPwmBlue.TabIndex = 12;
+            this.lblPwmBlue.Text = "PWM";
             // 
             // lblPwmGreen
             // 
             this.lblPwmGreen.AutoSize = true;
-            this.lblPwmGreen.Location = new System.Drawing.Point(255, 76);
+            this.lblPwmGreen.Location = new System.Drawing.Point(510, 146);
+            this.lblPwmGreen.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPwmGreen.Name = "lblPwmGreen";
-            this.lblPwmGreen.Size = new System.Drawing.Size(34, 13);
+            this.lblPwmGreen.Size = new System.Drawing.Size(64, 25);
             this.lblPwmGreen.TabIndex = 11;
             this.lblPwmGreen.Text = "PWM";
             // 
-            // lblPwmBlue
+            // lblPwmRed
             // 
-            this.lblPwmBlue.AutoSize = true;
-            this.lblPwmBlue.Location = new System.Drawing.Point(255, 104);
-            this.lblPwmBlue.Name = "lblPwmBlue";
-            this.lblPwmBlue.Size = new System.Drawing.Size(34, 13);
-            this.lblPwmBlue.TabIndex = 12;
-            this.lblPwmBlue.Text = "PWM";
+            this.lblPwmRed.AutoSize = true;
+            this.lblPwmRed.Location = new System.Drawing.Point(510, 90);
+            this.lblPwmRed.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblPwmRed.Name = "lblPwmRed";
+            this.lblPwmRed.Size = new System.Drawing.Size(64, 25);
+            this.lblPwmRed.TabIndex = 10;
+            this.lblPwmRed.Text = "PWM";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 202);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 25);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "BLUE";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 146);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 25);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "GREEN";
+            // 
+            // scrollPwmBlue
+            // 
+            this.scrollPwmBlue.LargeChange = 1;
+            this.scrollPwmBlue.Location = new System.Drawing.Point(112, 200);
+            this.scrollPwmBlue.Maximum = 255;
+            this.scrollPwmBlue.Name = "scrollPwmBlue";
+            this.scrollPwmBlue.Size = new System.Drawing.Size(362, 20);
+            this.scrollPwmBlue.TabIndex = 7;
+            this.scrollPwmBlue.ValueChanged += new System.EventHandler(this.scrollPwmBlue_Scroll);
+            // 
+            // scrollPwmGreen
+            // 
+            this.scrollPwmGreen.LargeChange = 1;
+            this.scrollPwmGreen.Location = new System.Drawing.Point(112, 140);
+            this.scrollPwmGreen.Maximum = 255;
+            this.scrollPwmGreen.Name = "scrollPwmGreen";
+            this.scrollPwmGreen.Size = new System.Drawing.Size(362, 20);
+            this.scrollPwmGreen.TabIndex = 6;
+            this.scrollPwmGreen.ValueChanged += new System.EventHandler(this.scrollPwmGreen_Scroll);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 384);
+            this.ClientSize = new System.Drawing.Size(662, 738);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRefreshPortList);
             this.Controls.Add(this.textBoxSerialData);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxPortList);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmMain";
             this.Text = "Arduino BT RGB-LED Controller";
             this.groupBox1.ResumeLayout(false);

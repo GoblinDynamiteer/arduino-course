@@ -7,6 +7,7 @@ namespace btLED
     public partial class frmMain : Form
     {
         enum ledColor : int { Red, Blue, Green };
+        private int lastTick;
 
         public frmMain()
         {
@@ -17,6 +18,8 @@ namespace btLED
             lblPwmBlue.Text = "0";
             lblPwmRed.Text = "0";
             lblPwmGreen.Text = "0";
+
+            lastTick = Environment.TickCount;
 
 
             if (!btSerialPort.IsOpen)
@@ -132,7 +135,13 @@ namespace btLED
             /* Limit PWM to 255 */
             pwm = pwm > 255 ? 255 : pwm;
 
-            btSerialPort.Write(commandColor + pwm + "X");
+            /* BYGG DELAY?? */
+            if (Environment.TickCount -lastTick > 30)
+            {
+                btSerialPort.Write(commandColor + pwm + "X");
+                lastTick = Environment.TickCount;
+            }
+            
         }
     }
 
