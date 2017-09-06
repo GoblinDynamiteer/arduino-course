@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.comboBoxPortList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -213,9 +214,13 @@
             this.Controls.Add(this.textBoxSerialData);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxPortList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "Arduino BT RGB-LED Controller";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Text = "Arduino BT RGB-LED";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
