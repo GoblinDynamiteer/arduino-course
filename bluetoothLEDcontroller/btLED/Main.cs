@@ -157,6 +157,7 @@ namespace btLED
             lblPwmGreen.Text = "0";
         }
 
+        /* Status button */
         private void btnStatus_Click(object sender, EventArgs e)
         {
             btSerialPort.Write("SX");
