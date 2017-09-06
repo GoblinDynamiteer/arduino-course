@@ -8,6 +8,9 @@
     R0X
     G0X
     B0X
+
+    STATUS
+    SX
  */
 
 
@@ -21,9 +24,15 @@
 
 /* Commands */
 const char COMMAND_END = 'X';
+const char COMMAND_STATUS = 'S';
 const char COMMAND_LED_RED = 'R';
 const char COMMAND_LED_GREEN = 'G';
 const char COMMAND_LED_BLUE = 'B';
+const char COMMAND_LED_RESET = 'N';
+
+byte led_red_pwm_last = 0;
+byte led_green_pwm_last = 0;
+byte led_blue_pwm_last = 0;
 
 void setup()
 {
@@ -40,43 +49,49 @@ void loop()
 {
     /* Get command from bluetooth serial */
     String data = readSerial();
+    byte pwm = 0;
 
     /* If command is not empty */
     if(data.length() > 0)
     {
-        int led_pin = 0;
+        switch (data[0]) {
+            case COMMAND_LED_RED:
+                pwm = GetPWMfromCommand(data);
+                led_red_pwm_last = pwm;
+                ledPWM(LED_PIN_RED, pwm);
+                Serial.println("Setting RED to: " + pwm);
+                break;
 
-        led_pin = data[0] == COMMAND_LED_RED    ? LED_PIN_RED   : led_pin;
-        led_pin = data[0] == COMMAND_LED_BLUE   ? LED_PIN_BLUE  : led_pin;
-        led_pin = data[0] == COMMAND_LED_GREEN  ? LED_PIN_GREEN : led_pin;
+            case COMMAND_LED_BLUE:
+                pwm = GetPWMfromCommand(data);
+                led_blue_pwm_last = pwm;
+                ledPWM(LED_PIN_BLUE, pwm);
+                Serial.println("Setting BLUE to: " + pwm);
+                break;
 
-        if(led_pin)
-        {
-            String pwm = ""; // For int conversion
+            case COMMAND_LED_GREEN:
+                pwm = GetPWMfromCommand(data);
+                led_green_pwm_last = pwm;
+                ledPWM(LED_PIN_GREEN, pwm);
+                Serial.println("Setting GREEN to: " + pwm);
+                break;
 
-            for(int i = 1; i < data.length(); i++)
-            {
-                /* Break when char is non-digit */
-                if(!isDigit(data[i]))
-                {
-                    break;
-                }
+            case COMMAND_LED_RESET:
+                ledPWM(LED_PIN_GREEN, 0);
+                ledPWM(LED_PIN_RED, 0);
+                ledPWM(LED_PIN_BLUE, 0);
+                Serial.println("LEDs Reset!");
+                break;
 
-                pwm += data[i]; // Concatenate numbers to string
-            }
+            case COMMAND_STATUS:
+                Serial.println("RED:   " + led_red_pwm_last);
+                Serial.println("BLUE:  " + led_blue_pwm_last);
+                Serial.println("GREEN: " + led_green_pwm_last);
+                break;
 
-            Serial.println(
-                "Setting " +  String(data[0]) + "-LED to PWM: " + pwm);
-
-            /* Use toInt to convert to int, cast as byte */
-            ledPWM(led_pin, (byte)pwm.toInt());
+            default:
+                Serial.println("Invalid command!");
         }
-
-        else // led_pin not set by command
-        {
-            Serial.println("Invalid command!");
-        }
-
     }
 
     delay(50);
@@ -104,7 +119,24 @@ String readSerial()
 
     command[size] = '\0';
 
-    //String retval(command);
-
     return String(command);
+}
+
+/* Get pwm value from command */
+byte GetPWMfromCommand(String data)
+{
+    String pwm = ""; // For int conversion
+
+    for(int i = 1; i < data.length(); i++)
+    {
+        /* Break when char is non-digit */
+        if(!isDigit(data[i]))
+        {
+            break;
+        }
+
+        pwm += data[i]; // Concatenate numbers to string
+    }
+
+    return (byte)pwm.toInt();
 }

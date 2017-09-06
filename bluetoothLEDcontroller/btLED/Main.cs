@@ -21,9 +21,7 @@ namespace btLED
 
             lastTick = Environment.TickCount;
 
-
             OpenCOM();
-
 
         }
 
@@ -142,6 +140,17 @@ namespace btLED
                 lastTick = Environment.TickCount;
             }
             
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            btSerialPort.Write("NX");
+
+        }
+
+        private void btnStatus_Click(object sender, EventArgs e)
+        {
+            btSerialPort.Write("SX");
         }
     }
 

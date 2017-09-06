@@ -45,6 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.scrollPwmBlue = new System.Windows.Forms.HScrollBar();
             this.scrollPwmGreen = new System.Windows.Forms.HScrollBar();
+            this.btnStatus = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,17 +59,17 @@
             // 
             this.comboBoxPortList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPortList.FormattingEnabled = true;
-            this.comboBoxPortList.Location = new System.Drawing.Point(88, 12);
+            this.comboBoxPortList.Location = new System.Drawing.Point(87, 19);
             this.comboBoxPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxPortList.Name = "comboBoxPortList";
-            this.comboBoxPortList.Size = new System.Drawing.Size(216, 33);
+            this.comboBoxPortList.Size = new System.Drawing.Size(336, 33);
             this.comboBoxPortList.TabIndex = 0;
             this.comboBoxPortList.SelectedIndexChanged += new System.EventHandler(this.comboBoxPortList_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 17);
+            this.label1.Location = new System.Drawing.Point(24, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 25);
@@ -85,7 +87,7 @@
             // 
             // btnRefreshPortList
             // 
-            this.btnRefreshPortList.Location = new System.Drawing.Point(320, 8);
+            this.btnRefreshPortList.Location = new System.Drawing.Point(482, 12);
             this.btnRefreshPortList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnRefreshPortList.Name = "btnRefreshPortList";
             this.btnRefreshPortList.Size = new System.Drawing.Size(150, 44);
@@ -116,6 +118,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.lblPwmBlue);
             this.groupBox1.Controls.Add(this.lblPwmGreen);
             this.groupBox1.Controls.Add(this.lblPwmRed);
@@ -129,7 +132,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox1.Size = new System.Drawing.Size(606, 281);
+            this.groupBox1.Size = new System.Drawing.Size(602, 340);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RGB-Kontroll";
@@ -204,11 +207,32 @@
             this.scrollPwmGreen.TabIndex = 6;
             this.scrollPwmGreen.ValueChanged += new System.EventHandler(this.scrollPwmGreen_Scroll);
             // 
+            // btnStatus
+            // 
+            this.btnStatus.Location = new System.Drawing.Point(663, 333);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(221, 42);
+            this.btnStatus.TabIndex = 7;
+            this.btnStatus.Text = "Status";
+            this.btnStatus.UseVisualStyleBackColor = true;
+            this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(19, 258);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(132, 51);
+            this.btnReset.TabIndex = 8;
+            this.btnReset.Text = "Återställ";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 738);
+            this.ClientSize = new System.Drawing.Size(1125, 770);
+            this.Controls.Add(this.btnStatus);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRefreshPortList);
             this.Controls.Add(this.textBoxSerialData);
@@ -245,6 +269,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPwmBlue;
         private System.Windows.Forms.Label lblPwmGreen;
+        private System.Windows.Forms.Button btnStatus;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 
